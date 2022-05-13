@@ -9,9 +9,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.datastore.dataStore
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.get
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.fixphone.DataStore.DataStoreManager
 import com.example.fixphone.R
 import com.example.fixphone.adapter.MainAdapter
 import com.example.fixphone.database.PhoneDatabase
@@ -33,6 +36,7 @@ class FragmentHome : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private var phoneDatabase: PhoneDatabase? = null
+    lateinit var dataStoreManager:DataStoreManager
     private lateinit var homeViewModel: HomeViewModel
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,22 +49,15 @@ class FragmentHome : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+        homeViewModel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
         phoneDatabase = PhoneDatabase.getInstance(requireContext())
-        val sharePreferences =
-            requireContext().getSharedPreferences(FragmentLogin.SHARED_FILE, Context.MODE_PRIVATE)
-        val username = sharePreferences.getString("username", "default_username")
-        val password = sharePreferences.getString("password", "default_password")
-        homeViewModel.userData.observe(viewLifecycleOwner) {
+        dataStoreManager = DataStoreManager(requireActivity())
+        homeViewModel.getDataUser().observe(viewLifecycleOwner) {
             binding.tvWelcome.text = getString(R.string.welcome, it.nama)
         }
-        if (username != null) {
-            if (password != null) {
-                getUserData(username, password)
-            }
-        }
+
         binding.toolbar.setOnClickListener {
-            homeViewModel.userData.observe(viewLifecycleOwner) {
+            homeViewModel.getDataUser().observe(viewLifecycleOwner) {
                 AlertDialog.Builder(requireContext())
                     .setTitle("User Profile")
                     .setMessage(
@@ -79,11 +76,11 @@ class FragmentHome : Fragment() {
                             .setTitle("Konfirmasi Logout")
                             .setMessage("Yakin Mau Keluar?")
                             .setNeutralButton("Tidak") { dialog, _ -> dialog.dismiss() }
-                            .setPositiveButton("Iya") { dialog, _ ->
-                                val edit = sharePreferences.edit()
-                                edit.clear()
-                                edit.apply()
-                                dialog.dismiss()
+                            .setPositiveButton("Iya") { dialog, _ -> dialog.dismiss()
+                                lifecycleScope.launch(Dispatchers.IO){
+                                    dataStoreManager.deleteUserFromPref()
+                                }
+
                                 findNavController().navigate(R.id.action_fragmentHome_to_fragmentLogin)
                             }
                             .create()
@@ -108,18 +105,6 @@ class FragmentHome : Fragment() {
         getCases()
         fetchAllData()
     }
-
-    private fun getUserData(username: String, password: String) {
-        lifecycleScope.launch(Dispatchers.IO) {
-            val getdata = phoneDatabase?.userDao()?.getUser(username, password)
-            runBlocking(Dispatchers.Main) {
-                if (getdata != null) {
-                    homeViewModel.getUserData(getdata)
-                }
-            }
-        }
-    }
-
     private fun getCases() {
         ApiClient.instance.getLatestPhone().enqueue(object : Callback<GetLatestPhoneResponse> {
             @SuppressLint("StringFormatInvalid")
@@ -127,8 +112,7 @@ class FragmentHome : Fragment() {
                 call: Call<GetLatestPhoneResponse>,
                 response: Response<GetLatestPhoneResponse>
             ) {
-                binding.tvMessage.text =
-                    getString(R.string.silahkan_dipilih, response.body()?.status.toString())
+                binding.tvMessage.text = getString(R.string.silahkan_dipilih, response.body()?.status.toString())
             }
 
             override fun onFailure(call: Call<GetLatestPhoneResponse>, t: Throwable) {

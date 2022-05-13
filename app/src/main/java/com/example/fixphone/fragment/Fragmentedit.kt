@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -14,6 +15,7 @@ import com.example.fixphone.R
 import com.example.fixphone.database.PhoneDatabase
 import com.example.fixphone.databinding.FragmentEditBinding
 import com.example.fixphone.model.User
+import com.example.fixphone.viewmodel.HomeViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -24,6 +26,7 @@ class Fragmentedit : Fragment() {
     private val binding get() = _binding!!
     private val args: FragmenteditArgs by navArgs()
     private var phoneDatabase: PhoneDatabase?? = null
+    lateinit var homeViewModel: HomeViewModel
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -36,8 +39,7 @@ class Fragmentedit : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         phoneDatabase = PhoneDatabase.getInstance(requireContext())
-        val sharedPreferences =
-            requireContext().getSharedPreferences(FragmentLogin.SHARED_FILE, Context.MODE_PRIVATE)
+        homeViewModel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
         val dataUser = args.user
         binding.apply {
             etNama.setText(dataUser.nama)
@@ -69,15 +71,12 @@ class Fragmentedit : Fragment() {
                         val result = phoneDatabase?.userDao()?.updateUser(user)
                         runBlocking(Dispatchers.Main){
                             if (result != 0) {
-                                val editor = sharedPreferences.edit()
-                                editor.putString("username", user.username)
-                                editor.putString("password", user.password)
-                                editor.apply()
                                 Toast.makeText(
                                     requireContext(),
                                     "Data berhasil di Update!",
                                     Toast.LENGTH_SHORT
                                 ).show()
+                                homeViewModel.setDataUser(user)
                                 findNavController().navigate(R.id.action_fragmentedit_to_fragmentHome)
                             } else {
                                 Toast.makeText(

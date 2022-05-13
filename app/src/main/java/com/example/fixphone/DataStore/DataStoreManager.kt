@@ -42,7 +42,7 @@ class DataStoreManager (private val context: Context){
                 preferences[NAMA_KEY] ?: DEFAULR_NAMA,
                  preferences[USERNAME_KEY] ?: DEFAULT_USERNAME,
                 preferences[EMAIL_KEY] ?: DEFAULT_EMAIL,
-                (preferences[PASSWORD_KEY] ?: PASSWORD_KEY) as String
+                preferences[PASSWORD_KEY] ?: DEFAULT_PASSWORD
             )
 
         }
