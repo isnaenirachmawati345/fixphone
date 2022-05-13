@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">fixphone</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="belum_punya_akun_buat"><i>Belum Punya Akun?</i> <b>Buat</b></string>
+    <string name="belum_punya_akun"><i>Belum Punya Akun?</i> <b>Sudah</b></string>
+    <string name="welcome">welcome, %s</string>
+    <string name="silahkan_dipilih">Silahkan Dipilih</string>
+</resources>

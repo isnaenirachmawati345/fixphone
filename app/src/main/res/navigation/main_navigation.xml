@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/fragmentLogin">
+
+    <fragment
+        android:id="@+id/fragmentLogin"
+        android:name="com.example.fixphone.fragment.FragmentLogin"
+        android:label="fragment__login"
+        tools:layout="@layout/fragment__login" >
+        <action
+            android:id="@+id/action_fragmentLogin_to_fragmentHome"
+            app:destination="@id/fragmentHome" />
+        <action
+            android:id="@+id/action_fragmentLogin_to_fragmentRegister"
+            app:destination="@id/fragmentRegister" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentRegister"
+        android:name="com.example.fixphone.fragment.FragmentRegister"
+        android:label="fragment__register"
+        tools:layout="@layout/fragment__register" >
+        <action
+            android:id="@+id/action_fragmentRegister_to_fragmentLogin"
+            app:destination="@id/fragmentLogin" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentHome"
+        android:name="com.example.fixphone.fragment.FragmentHome"
+        android:label="fragment__home"
+        tools:layout="@layout/fragment__home" >
+        <action
+            android:id="@+id/action_fragmentHome_to_fragmentLogin"
+            app:destination="@id/fragmentLogin" />
+        <action
+            android:id="@+id/action_fragmentHome_to_fragmentedit"
+            app:destination="@id/fragmentedit" />
+        <action
+            android:id="@+id/action_fragmentHome_to_fragmentDetail"
+            app:destination="@id/fragmentDetail" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentedit"
+        android:name="com.example.fixphone.fragment.Fragmentedit"
+        android:label="fragment_edit"
+        tools:layout="@layout/fragment_edit" >
+        <argument
+            android:name="user"
+            app:argType="com.example.fixphone.model.User" />
+        <action
+            android:id="@+id/action_fragmentedit_to_fragmentHome"
+            app:destination="@id/fragmentHome" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentDetail"
+        android:name="com.example.fixphone.fragment.FragmentDetail"
+        android:label="fragment__detail"
+        tools:layout="@layout/fragment__detail" >
+        <argument
+            android:name="slug"
+            app:argType="string" />
+    </fragment>
+</navigation>
