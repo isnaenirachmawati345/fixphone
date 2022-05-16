@@ -18,5 +18,7 @@ import kotlinx.parcelize.Parcelize
     @ColumnInfo(name = "username")
     var username: String,
     @ColumnInfo(name = "password")
-    var password: String
+    var password: String,
+    @ColumnInfo(name = "image")
+    var image: String
 ):Parcelable

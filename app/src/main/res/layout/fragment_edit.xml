@@ -8,6 +8,16 @@
     tools:context=".fragment.Fragmentedit">
 
     <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/iv_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit Profile"
+        android:textColor="@color/white"
+        android:textSize="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/bg_login"
+        app:layout_constraintEnd_toEndOf="@+id/bg_login"
+        app:layout_constraintStart_toStartOf="@+id/bg_login" />
     <ImageView
         android:id="@+id/bg_login"
         android:layout_width="wrap_content"
@@ -19,16 +29,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/iv_logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Edit Profile"
-        android:textSize="50dp"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/bg_login"
-        app:layout_constraintEnd_toEndOf="@+id/bg_login"
-        app:layout_constraintStart_toStartOf="@+id/bg_login" />
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_image"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/ic_baseline_person_24"
+        app:civ_border_color="#FF000000"
+        app:civ_border_width="2dp"
+        app:layout_constraintBottom_toTopOf="@+id/iv_logo"
+        app:layout_constraintEnd_toEndOf="@+id/iv_logo"
+        app:layout_constraintStart_toStartOf="@+id/iv_logo"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingClass" />
+<!--    <TextView-->
+<!--        android:id="@+id/iv_logo"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Edit Profile"-->
+<!--        android:textSize="50dp"-->
+<!--        android:textColor="@color/white"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/bg_login"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/bg_login"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/bg_login" />-->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_nama"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"

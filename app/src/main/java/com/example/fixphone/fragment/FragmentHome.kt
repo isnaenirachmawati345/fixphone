@@ -3,7 +3,9 @@ package com.example.fixphone.fragment
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -54,6 +56,9 @@ class FragmentHome : Fragment() {
         dataStoreManager = DataStoreManager(requireActivity())
         homeViewModel.getDataUser().observe(viewLifecycleOwner) {
             binding.tvWelcome.text = getString(R.string.welcome, it.nama)
+            if (it.image != "no_image") {
+                loadImage(Uri.parse(it.image))
+            }
         }
 
         binding.toolbar.setOnClickListener {
@@ -88,14 +93,14 @@ class FragmentHome : Fragment() {
                         dialog.dismiss()
                     }
                     .setNegativeButton("Edit Profile") { _, _ ->
-                        val data = User(
-                            it.id_user,
-                            it.nama,
-                            it.email,
-                            it.username,
-                            it.password
-                        )
-                        val editor = FragmentHomeDirections.actionFragmentHomeToFragmentedit(data)
+//                        val data = User(
+//                            it.id_user,
+//                            it.nama,
+//                            it.email,
+//                            it.username,
+//                            it.password
+//                        )
+                        val editor = FragmentHomeDirections.actionFragmentHomeToFragmentedit(it)
                         findNavController().navigate(editor)
 
                     }
@@ -156,6 +161,12 @@ class FragmentHome : Fragment() {
        })
         adapter.submitData(data)
         binding.rvMain.adapter = adapter
+    }
+    private fun loadImage(uri: Uri) {
+        Log.d("Cek URI", uri.toString())
+        binding.logo.setImageURI(uri)
+//        val s: String = mUri.toString()
+//        val mUri = Uri.parse(s)
     }
 }
 

@@ -61,7 +61,7 @@ class FragmentLogin : Fragment() {
                   login != null -> {
                      viewModel.setDataUser(login)
                      Toast.makeText(requireContext(), "Login Berhasil", Toast.LENGTH_SHORT).show()
-                     findNavController().navigate(R.id.action_fragmentLogin_to_fragmentHome)
+                     //findNavController().navigate(R.id.action_fragmentLogin_to_fragmentHome)
                   }
                   else -> {
                      Toast.makeText(requireContext(), "Username/Password Salah", Toast.LENGTH_SHORT)

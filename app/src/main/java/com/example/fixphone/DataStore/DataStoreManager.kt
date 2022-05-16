@@ -1,6 +1,7 @@
 package com.example.fixphone.DataStore
 
 import android.content.Context
+import android.media.Image
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
@@ -18,6 +19,7 @@ class DataStoreManager (private val context: Context){
         private val EMAIL_KEY = stringPreferencesKey("EMAIL_KEY")
         val USERNAME_KEY = stringPreferencesKey("USERNAME_KEY")
         private val PASSWORD_KEY = stringPreferencesKey("PASSWORD_KEY")
+        private val IMAGE_KEY = stringPreferencesKey("image_key")
         //untuk cek data ketika login
         const val DEFAULT_ID = -1
         const val DEFAULT_USERNAME = "DEF_USERNAME"
@@ -33,6 +35,7 @@ class DataStoreManager (private val context: Context){
             preferences[USERNAME_KEY] = user.username
             preferences[EMAIL_KEY] = user.email
             preferences[PASSWORD_KEY] = user.password
+            preferences[IMAGE_KEY] = user.image
         }
     }
     fun getUser(): Flow<User> {
@@ -42,7 +45,8 @@ class DataStoreManager (private val context: Context){
                 preferences[NAMA_KEY] ?: DEFAULR_NAMA,
                  preferences[USERNAME_KEY] ?: DEFAULT_USERNAME,
                 preferences[EMAIL_KEY] ?: DEFAULT_EMAIL,
-                preferences[PASSWORD_KEY] ?: DEFAULT_PASSWORD
+                preferences[PASSWORD_KEY] ?: DEFAULT_PASSWORD,
+                 preferences[IMAGE_KEY]?: "no_image"
             )
 
         }
