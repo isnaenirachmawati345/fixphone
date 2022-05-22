@@ -63,4 +63,16 @@
             android:name="slug"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/fragment_Splash"
+        android:name="com.example.fixphone.Fragment_Splash"
+        android:label="fragment__splash"
+        tools:layout="@layout/fragment__splash" >
+        <action
+            android:id="@+id/action_fragment_Splash_to_fragmentHome"
+            app:destination="@id/fragmentHome" />
+        <action
+            android:id="@+id/action_fragment_Splash_to_fragmentLogin"
+            app:destination="@id/fragmentLogin" />
+    </fragment>
 </navigation>

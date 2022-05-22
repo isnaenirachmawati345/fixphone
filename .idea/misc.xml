@@ -6,14 +6,17 @@
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/fixphone/app/src/main/res/drawable-v24/bg_login.xml" value="0.1" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/fixphone/app/src/main/res/drawable-v24/bg_register.xml" value="0.1" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/fixphone/app/src/main/res/drawable-v24/ic_baseline_keyboard_double_arrow_right.xml" value="0.1" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/fixphone/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/fixphone/app/src/main/res/drawable-v24/ic_person.xml" value="0.1" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/fixphone/app/src/main/res/drawable-v24/ic_register.xml" value="0.1" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/fixphone/app/src/main/res/drawable-v24/icon_login.xml" value="0.1" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/fixphone/app/src/main/res/drawable/bg_edit.xml" value="0.1" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/fixphone/app/src/main/res/drawable/gradasi.xml" value="0.1" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/fixphone/app/src/main/res/drawable/gradation_background.xml" value="0.1" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/fixphone/app/src/main/res/drawable/ic___phone_cat_icon_icons_com_76682.xml" value="0.1" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/fixphone/app/src/main/res/drawable/ic_baseline_favorite_border_24.xml" value="0.1" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/fixphone/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.1" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/fixphone/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/fixphone/app/src/main/res/drawable/ic_person.xml" value="0.1" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/fixphone/app/src/main/res/drawable/toolbar_shape.xml" value="0.1" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/fixphone/app/src/main/res/layout/activity_main.xml" value="0.1" />
@@ -21,6 +24,7 @@
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/fixphone/app/src/main/res/layout/fragment__home.xml" value="0.18" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/fixphone/app/src/main/res/layout/fragment__login.xml" value="0.1" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/fixphone/app/src/main/res/layout/fragment__register.xml" value="0.1" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/fixphone/app/src/main/res/layout/fragment__splash.xml" value="0.1" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/fixphone/app/src/main/res/layout/fragment_edit.xml" value="0.13924050632911392" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/fixphone/app/src/main/res/layout/fragment_favorite.xml" value="0.1" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/fixphone/app/src/main/res/layout/fragment_list_item.xml" value="0.25" />
