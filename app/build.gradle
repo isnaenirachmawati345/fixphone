@@ -77,4 +77,17 @@ dependencies {
     implementation "androidx.datastore:datastore-preferences:1.0.0"
     //image
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+    //chucker
+    debugImplementation 'com.github.chuckerteam.chucker:library:3.5.2'
+    releaseImplementation 'com.github.chuckerteam.chucker:library-no-op:3.5.2'
+
+    // Koin main features for Android
+    def koin_version= "3.2.0"
+    implementation "io.insert-koin:koin-android:$koin_version"
+    // Optional -- Mockito framework
+    testImplementation "org.mockito:mockito-core:4.5.1"
+    // Optional -- mockito-kotlin
+    testImplementation "org.mockito.kotlin:mockito-kotlin:4.0.0"
+    // Optional -- Mockk framework
+    testImplementation "io.mockk:mockk:1.12.4"
 }

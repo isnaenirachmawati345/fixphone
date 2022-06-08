@@ -1,6 +1,5 @@
 package com.example.fixphone.adapter
 
-import android.content.DialogInterface
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
@@ -10,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.example.fixphone.databinding.ListitemPhoneBinding
 import com.example.fixphone.model.Phone
 
-class MainAdapter (private val onItemClick : OnClickListener): RecyclerView.Adapter<MainAdapter.ViewHolder>(){
+class HomeAdapter (private val onItemClick : OnClickListener): RecyclerView.Adapter<HomeAdapter.MainViewHolder>(){
 
     private val diffCallBack = object : DiffUtil.ItemCallback<Phone>(){
         override fun areItemsTheSame(
@@ -30,12 +29,30 @@ class MainAdapter (private val onItemClick : OnClickListener): RecyclerView.Adap
     private val differ = AsyncListDiffer(this, diffCallBack)
     fun submitData(value: List<Phone>?) = differ.submitList(value)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainAdapter.ViewHolder {
+
+    inner class MainViewHolder(
+        private val binding: ListitemPhoneBinding
+    ) : RecyclerView.ViewHolder(binding.root){
+        fun bind(data: Phone){
+            with(binding){
+                tvPhoneName.text = data.phoneName.toString()
+                 tvDeskripsi.text = data.detail
+                Glide.with(binding.root)
+                    .load(data.image)
+                    .centerCrop()
+                    .into(ivPhoneImage)
+                root.setOnClickListener {
+                    onItemClick.onClickItem(data)
+                }
+            }
+        }
+    }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeAdapter.MainViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        return ViewHolder(ListitemPhoneBinding.inflate(inflater, parent, false))
+        return MainViewHolder(ListitemPhoneBinding.inflate(inflater, parent, false))
     }
 
-    override fun onBindViewHolder(holder: MainAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: HomeAdapter.MainViewHolder, position: Int) {
         val data = differ.currentList[position]
         data.let {
             holder.bind(data)
@@ -46,19 +63,6 @@ class MainAdapter (private val onItemClick : OnClickListener): RecyclerView.Adap
         return differ.currentList.size
     }
 
-    inner class ViewHolder(private val binding: ListitemPhoneBinding):RecyclerView.ViewHolder(binding.root){
-        fun bind(data: Phone){
-            binding.apply {
-                Glide.with(binding.root)
-                    .load(data.image)
-                    .into(ivPhoneImage)
-                tvPhoneName.text = data.phoneName
-                root.setOnClickListener{
-                    onItemClick.onClickItem(data)
-                }
-            }
-        }
-    }
     interface OnClickListener{
         fun onClickItem(data: Phone)
     }

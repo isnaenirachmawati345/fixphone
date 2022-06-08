@@ -6,9 +6,9 @@ import com.example.fixphone.model.User
 @Dao
 interface UserDao {
     @Query("SELECT * FROM user WHERE username = :username AND password = :password")
-    fun loginUser(username: String, password: String): Boolean
-    @Query("SELECT * FROM user WHERE username = :username AND password = :password")
-    fun getUser(username: String, password: String): User
+    fun loginUser(username: String, password: String): User
+    @Query("SELECT * FROM user")
+    fun getUser(): User
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertUser(user: User):Long
     @Update

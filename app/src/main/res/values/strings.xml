@@ -6,4 +6,6 @@
     <string name="belum_punya_akun"><i>Belum Punya Akun?</i> <b>Sudah</b></string>
     <string name="welcome">welcome, %s</string>
     <string name="silahkan_dipilih">Silahkan Dipilih</string>
+    <string name="favorite">favorite</string>
+    <string name="todo">todo</string>
 </resources>

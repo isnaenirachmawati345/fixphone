@@ -2,7 +2,6 @@ package com.example.fixphone.fragment
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
-import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -11,24 +10,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.datastore.dataStore
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.get
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.fixphone.DataStore.DataStoreManager
 import com.example.fixphone.R
-import com.example.fixphone.adapter.MainAdapter
+import com.example.fixphone.adapter.HomeAdapter
 import com.example.fixphone.database.PhoneDatabase
 import com.example.fixphone.databinding.FragmentHomeBinding
 import com.example.fixphone.model.GetLatestPhoneResponse
 import com.example.fixphone.model.Phone
-import com.example.fixphone.model.User
 import com.example.fixphone.service.ApiClient
 import com.example.fixphone.viewmodel.HomeViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -153,7 +148,7 @@ class FragmentHome : Fragment() {
     }
 
     private fun showList(data:  List<Phone>?) {
-       val adapter = MainAdapter(object  : MainAdapter.OnClickListener{
+       val adapter = HomeAdapter(object  : HomeAdapter.OnClickListener{
            override fun onClickItem(data: Phone) {
                val toDeDetail = FragmentHomeDirections.actionFragmentHomeToFragmentDetail(data.slug)
                findNavController().navigate(toDeDetail)
